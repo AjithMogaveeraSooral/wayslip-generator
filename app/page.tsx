@@ -203,7 +203,14 @@ export default function Home() {
             </div>
 
             <div className={styles.barcodeBox}>
-              <Barcode value={data.barcodeTop || "0"} displayValue width={1.25} height={24} />
+              <Barcode
+                value={data.barcodeTop || "0"}
+                displayValue
+                width={1.25}
+                height={24}
+                fontSize={13}
+                textAlign="left"
+              />
             </div>
           </div>
 
@@ -214,7 +221,13 @@ export default function Home() {
             </div>
 
             <div className={styles.barcodeBox}>
-              <Barcode value={data.barcodeBottom || "0"} displayValue width={1.25} height={24} />
+              <Barcode
+                value={data.barcodeBottom || "0"}
+                displayValue
+                width={1.25}
+                height={24}
+                fontSize={13}
+              />
             </div>
           </div>
 
