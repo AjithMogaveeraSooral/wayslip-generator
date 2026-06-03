@@ -190,8 +190,9 @@ export default function Home() {
         <div className={styles.document} ref={documentRef}>
           <header className={styles.header}>
             <div className={styles.titleBlock}>
-              <h2>DCBL FACTORY BELGAUM - 1300 BELGAUM</h2>
-              <h3>WEIGHMENT CERTIFICATE</h3>
+              <h2 className={styles.headerLineOne}>DCBL FACTORY BELGAUM - 1300</h2>
+              <h2 className={styles.headerLineTwo}>BELGAUM</h2>
+              <h3 className={styles.headerLineThree}>WEIGHMENT CERTIFICATE</h3>
             </div>
           </header>
 
@@ -202,7 +203,7 @@ export default function Home() {
             </div>
 
             <div className={styles.barcodeBox}>
-              <Barcode value={data.barcodeTop || "0"} displayValue width={1.25} height={30} />
+              <Barcode value={data.barcodeTop || "0"} displayValue width={1.25} height={24} />
             </div>
           </div>
 
@@ -213,7 +214,7 @@ export default function Home() {
             </div>
 
             <div className={styles.barcodeBox}>
-              <Barcode value={data.barcodeBottom || "0"} displayValue width={1.25} height={30} />
+              <Barcode value={data.barcodeBottom || "0"} displayValue width={1.25} height={24} />
             </div>
           </div>
 

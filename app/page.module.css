@@ -100,16 +100,24 @@
 }
 
 .titleBlock {
-  width: 100%;
+  width: 50%;
+  margin: 0 auto;
 }
 
-.header h2 {
-  font-size: 49px;
-  margin-bottom: 4px;
+.headerLineOne,
+.headerLineTwo,
+.headerLineThree {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
 }
 
-.header h3 {
-  font-size: 43px;
+.headerLineOne {
+  margin-bottom: 2px;
+}
+
+.headerLineTwo {
+  margin-bottom: 6px;
 }
 
 .topPairRow {
@@ -121,11 +129,11 @@
 }
 
 .barcodeBox {
-  min-width: 305px;
+  min-width: 220px;
   border: 1px solid #111;
-  padding: 4px 8px;
+  padding: 4px 3px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .topLine {
@@ -136,7 +144,7 @@
 
 .rows {
   display: grid;
-  gap: 2px;
+  gap: 25px;
 }
 
 .row {
@@ -156,10 +164,12 @@
 
 .value {
   font-weight: 500;
+  font-size: 0.86em;
 }
 
 .valuePlain {
   font-weight: 400;
+  font-size: 0.86em;
 }
 
 .footer {
@@ -195,11 +205,13 @@
     transform-origin: top left;
   }
 
-  .header h2 {
-    font-size: 30px;
+  .titleBlock {
+    width: 70%;
   }
 
-  .header h3 {
+  .headerLineOne,
+  .headerLineTwo,
+  .headerLineThree {
     font-size: 26px;
   }
 
