@@ -48,10 +48,10 @@ const formatWeight = (value: string) => {
     return "";
   }
 
-  return `${numeric.toLocaleString("en-IN", {
+  return numeric.toLocaleString("en-IN", {
     minimumFractionDigits: 3,
     maximumFractionDigits: 3,
-  })} Kgs.`;
+  });
 };
 
 const parseWeight = (value: string) => {
@@ -254,19 +254,28 @@ export default function Home() {
             </div>
             <div className={styles.rowFour}>
               <span className={styles.label}>FIRST WEIGHT:</span>
-              <span className={styles.value}>{formatWeight(data.firstWeight)}</span>
+              <span className={`${styles.value} ${styles.weightValue}`}>
+                <span className={styles.weightNumber}>{formatWeight(data.firstWeight)}</span>
+                <span className={styles.weightUnit}>Kgs.</span>
+              </span>
               <span className={styles.label}>DATE:</span>
               <span className={styles.value}>{data.firstDate}</span>
             </div>
             <div className={styles.rowFour}>
               <span className={styles.label}>SECOND WEIGHT:</span>
-              <span className={styles.value}>{formatWeight(data.secondWeight)}</span>
+              <span className={`${styles.value} ${styles.weightValue}`}>
+                <span className={styles.weightNumber}>{formatWeight(data.secondWeight)}</span>
+                <span className={styles.weightUnit}>Kgs.</span>
+              </span>
               <span className={styles.label}>DATE:</span>
               <span className={styles.value}>{data.secondDate}</span>
             </div>
-            <div className={styles.row}>
+            <div className={`${styles.row} ${styles.netWeightRow}`}>
               <span className={styles.label}>NET WEIGHT:</span>
-              <span className={styles.value}>{netWeight}</span>
+              <span className={`${styles.value} ${styles.weightValue}`}>
+                <span className={styles.weightNumber}>{netWeight}</span>
+                {netWeight ? <span className={styles.weightUnit}>Kgs.</span> : null}
+              </span>
             </div>
           </div>
 
