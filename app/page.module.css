@@ -133,7 +133,8 @@
   border: 1px solid #111;
   padding: 1px 3px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
 }
 
 .topLine {
