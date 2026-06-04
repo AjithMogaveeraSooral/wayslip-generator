@@ -107,6 +107,7 @@
 .headerLineOne,
 .headerLineTwo,
 .headerLineThree {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
   font-weight: 700;
   margin: 0;
