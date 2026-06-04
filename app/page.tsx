@@ -24,6 +24,8 @@ type FormState = {
   barcodeBottom: string;
 };
 
+type PdfOrientation = "landscape" | "portrait";
+
 const initialState: FormState = {
   sapWeightNo: "1300302108",
   vehicleNo: "KA52C0542",
@@ -62,7 +64,7 @@ const parseWeight = (value: string) => {
 
 export default function Home() {
   const [data, setData] = useState<FormState>(initialState);
-  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadingOrientation, setDownloadingOrientation] = useState<PdfOrientation | null>(null);
   const documentRef = useRef<HTMLDivElement>(null);
 
   const netWeight = useMemo(() => {
@@ -80,14 +82,14 @@ export default function Home() {
     setData((previous) => ({ ...previous, [name]: value }));
   };
 
-  const downloadPdf = async () => {
+  const downloadPdf = async (orientation: PdfOrientation) => {
     const node = documentRef.current;
     if (!node) {
       return;
     }
 
     try {
-      setIsDownloading(true);
+      setDownloadingOrientation(orientation);
       const canvas = await html2canvas(node, {
         scale: 2,
         useCORS: true,
@@ -95,7 +97,7 @@ export default function Home() {
       });
 
       const imageData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("landscape", "pt", "a4");
+      const pdf = new jsPDF(orientation, "pt", "a4");
       const width = pdf.internal.pageSize.getWidth();
       const height = pdf.internal.pageSize.getHeight();
       const ratio = Math.min(width / canvas.width, height / canvas.height);
@@ -106,9 +108,9 @@ export default function Home() {
       const y = (height - renderHeight) / 2;
 
       pdf.addImage(imageData, "PNG", x, y, renderWidth, renderHeight);
-      pdf.save(`weighment-certificate-${Date.now()}.pdf`);
+      pdf.save(`weighment-certificate-${orientation}-${Date.now()}.pdf`);
     } finally {
-      setIsDownloading(false);
+      setDownloadingOrientation(null);
     }
   };
 
@@ -181,9 +183,22 @@ export default function Home() {
           </label>
         </div>
 
-        <button type="button" onClick={downloadPdf} disabled={isDownloading}>
-          {isDownloading ? "Generating PDF..." : "Download Certificate (PDF)"}
-        </button>
+        <div className={styles.downloadActions}>
+          <button
+            type="button"
+            onClick={() => downloadPdf("landscape")}
+            disabled={downloadingOrientation !== null}
+          >
+            {downloadingOrientation === "landscape" ? "Generating Landscape PDF..." : "Download Landscape PDF"}
+          </button>
+          <button
+            type="button"
+            onClick={() => downloadPdf("portrait")}
+            disabled={downloadingOrientation !== null}
+          >
+            {downloadingOrientation === "portrait" ? "Generating Portrait PDF..." : "Download Portrait PDF"}
+          </button>
+        </div>
       </section>
 
       <section className={styles.previewPanel}>

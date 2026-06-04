@@ -61,6 +61,16 @@
   cursor: pointer;
 }
 
+.downloadActions {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.downloadActions button {
+  margin-top: 0;
+}
+
 .formPanel button:disabled {
   opacity: 0.75;
   cursor: not-allowed;
