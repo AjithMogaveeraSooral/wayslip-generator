@@ -129,9 +129,9 @@
 }
 
 .barcodeBox {
-  min-width: 220px;
+  min-width: 200px;
   border: 1px solid #111;
-  padding: 1px 3px;
+  padding: 0 0px;
   display: flex;
   justify-content: center;
   align-items: center;
